@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{E97C2593-F643-4D16-A195-5E56038FF3A8}</ProjectGuid>
+    <ProjectGuid>{0CB847BC-A441-4E2B-BF41-92E06A9CD2BE}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>Bonebreaker</RootNamespace>
-    <AssemblyName>Bonebreaker</AssemblyName>
-    <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
+    <RootNamespace>Bonebreaker2</RootNamespace>
+    <AssemblyName>Bonebreaker2</AssemblyName>
+    <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
   </PropertyGroup>
@@ -42,9 +42,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Map.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Unit.cs" />
     <Compile Include="World.cs" />
   </ItemGroup>
   <ItemGroup>
