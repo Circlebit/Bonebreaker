@@ -29,7 +29,6 @@ namespace Bonebreaker
             }
         }
 
-        //TODO: Load Map from File - Just draw Terrains with texteditor. Define Enemy Type and Position
     }
 
     class Tile

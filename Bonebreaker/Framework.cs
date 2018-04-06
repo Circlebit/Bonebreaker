@@ -52,5 +52,12 @@ namespace Bonebreaker
             }
             Console.Write("╝");
         }
+
+
+        public static Map LoadMapFromFile(string pathToFile)
+        {
+            //TODO: Load Map from File - Just draw Terrains with texteditor. Define Enemy Type and Position
+            return new Map(12, 34);
+        }
     }
 }
