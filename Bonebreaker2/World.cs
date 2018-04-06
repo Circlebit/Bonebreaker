@@ -36,10 +36,10 @@ namespace Bonebreaker2
 
     class Enemy
     {
-        //TODO: Implement flying enemy type (they can cross all obstacles)
 
         public int X { get; set; }
         public int Y { get; set; }
+        public bool CanCrossObstacles {get; set;}  // "flying"
 
         public Enemy(int x, int y)
         {
