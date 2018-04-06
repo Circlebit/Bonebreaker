@@ -10,11 +10,13 @@ namespace Bonebreaker
     {
         static void Main(string[] args)
         {
+            Framework.SetupConsole();
+            
             Player Player = new Player(1, 1);
 
-            World World = new World(10, 10, Player);
+            World World_1 = new World(10, 10, Player);
 
-            //TODO: Develop View - Port stuff from Bonebreaker 1
+            Framework.PrintMapFrame(World_1.Map);
 
             //TODO: Start a World
 
@@ -22,7 +24,6 @@ namespace Bonebreaker
 
             //TODO: Mainloop (per World)
 
-            
         }
     }
 }

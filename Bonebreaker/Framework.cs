@@ -6,20 +6,20 @@ using System.Threading.Tasks;
 
 namespace Bonebreaker
 {
-    class Framework
+    static class Framework
     {
-        static void SetupConsole()
+        public static void SetupConsole()
         {
             Console.OutputEncoding = System.Text.Encoding.UTF8;
             Console.Title = "Bonebreaker";
             Console.CursorVisible = false;
-            Console.Clear();
-            Console.SetWindowSize(120, 30);
+            Console.SetWindowSize(120, 50);
             Console.BufferWidth = 120;
-            Console.BufferHeight = 30;
+            Console.BufferHeight = 50;
+            Console.Clear();
         }
 
-        static void PrintMapFrame(Map map)
+        public static void PrintMapFrame(Map map)
         {
             const int TopMargin = 2;
             const int LeftMargin = 2;
