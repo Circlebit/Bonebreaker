@@ -19,40 +19,4 @@ namespace Bonebreaker
         }
     }
 
-
-    //TODO: auslagern in eigene Datei
-    class Player
-    {
-        //TODO: wohin mit dem Player? Trennung von "Charakter" und Spielerfigur in der WOrld?
-        public int X { get; set; }
-        public int Y { get; set; }
-
-        public Player(int x, int y)
-        {
-            X = x;
-            Y = y;
-        }
-    }
-
-    class Enemy
-    {
-
-        public int X { get; set; }
-        public int Y { get; set; }
-        public bool CanCrossObstacles {get; set;}  // "flying"
-
-        public Enemy(int x, int y)
-        {
-            X = x;
-            Y = y;
-        }
-
-        /// <summary>
-        /// Moves the Enemy towards given coordinates
-        /// </summary>
-        public void MoveTowards(int x, int y)
-        {
-            //TODO: Implement Movement towards Coordinates
-        }
-    }
 }
