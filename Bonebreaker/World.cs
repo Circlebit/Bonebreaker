@@ -17,6 +17,8 @@ namespace Bonebreaker
             Map = new Map(mapHeight, mapWidth);
             Player = player;
         }
+
+        //TODO: World.Run() - start a main loop and runs a game of this World
     }
 
 }
