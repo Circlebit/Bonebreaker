@@ -6,8 +6,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{0CB847BC-A441-4E2B-BF41-92E06A9CD2BE}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>Bonebreaker2</RootNamespace>
-    <AssemblyName>Bonebreaker2</AssemblyName>
+    <RootNamespace>Bonebreaker</RootNamespace>
+    <AssemblyName>Bonebreaker</AssemblyName>
     <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
