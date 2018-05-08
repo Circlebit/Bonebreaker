@@ -8,14 +8,18 @@ namespace Bonebreaker
 {
     static class Framework
     {
+        public const int WindowHeight = 39;
+        public const int WindowWidth = 120;
+
+
         public static void SetupConsole()
         {
             Console.OutputEncoding = System.Text.Encoding.UTF8;
             Console.Title = "Bonebreaker";
             Console.CursorVisible = false;
-            Console.SetWindowSize(120, 50);
-            Console.BufferWidth = 120;
-            Console.BufferHeight = 50;
+            Console.SetWindowSize(WindowWidth, WindowHeight);
+            Console.BufferHeight = WindowHeight;
+            Console.BufferWidth = WindowWidth;
             Console.Clear();
         }
 

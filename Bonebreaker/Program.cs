@@ -14,7 +14,7 @@ namespace Bonebreaker
             
             Player Player = new Player(1, 1);
 
-            World World_1 = new World(10, 10, Player);
+            World World_1 = new World(32, 100, Player);
 
             Framework.PrintMapFrame(World_1.Map);
 
