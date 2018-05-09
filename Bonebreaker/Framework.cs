@@ -10,6 +10,8 @@ namespace Bonebreaker
     {
         public const int WindowHeight = 39;
         public const int WindowWidth = 120;
+        public const int MapTopMargin = 2;
+        public const int MapLeftMargin = 2;
 
 
         public static void SetupConsole()
@@ -25,11 +27,9 @@ namespace Bonebreaker
 
         public static void PrintMapFrame(Map map)
         {
-            const int TopMargin = 2;
-            const int LeftMargin = 2;
-            Console.SetCursorPosition(LeftMargin, TopMargin - 1);
+            Console.SetCursorPosition(MapLeftMargin, MapTopMargin - 1);
             Console.Write(" Map ");
-            Console.SetCursorPosition(LeftMargin, TopMargin);
+            Console.SetCursorPosition(MapLeftMargin, MapTopMargin);
             Console.Write("╔");
             for (int x = 0; x < map.Width; x++)
             {
@@ -37,24 +37,34 @@ namespace Bonebreaker
             }
             Console.Write("╗");
 
-            //Console.SetCursorPosition(LeftMargin+1, TopMargin);
+            //Console.SetCursorPosition(MapLeftMargin+1, MapTopMargin);
             //Console.Write("╡Map╞");
 
-            for (int y = TopMargin + 1; y < map.Height + TopMargin; y++)
+            for (int y = MapTopMargin + 1; y < map.Height + MapTopMargin; y++)
             {
-                Console.SetCursorPosition(LeftMargin, y);
+                Console.SetCursorPosition(MapLeftMargin, y);
                 Console.Write("║");
-                Console.SetCursorPosition(map.Width + LeftMargin + 1, y);
+                Console.SetCursorPosition(map.Width + MapLeftMargin + 1, y);
                 Console.Write("║");
             }
 
-            Console.SetCursorPosition(LeftMargin, map.Height + TopMargin);
+            Console.SetCursorPosition(MapLeftMargin, map.Height + MapTopMargin);
             Console.Write("╚");
             for (int x = 0; x < map.Width; x++)
             {
                 Console.Write("═");
             }
             Console.Write("╝");
+        }
+
+        /// <summary>
+        /// Sets the cursor to a coordinate relative to the topleft of the map
+        /// </summary>
+        /// <param name="X"></param>
+        /// <param name="Y"></param>
+        public static void SetCursorToMap(int X, int Y)
+        {
+            Console.SetCursorPosition(X + MapLeftMargin + 1, Y + MapTopMargin + 1);
         }
     }
 }

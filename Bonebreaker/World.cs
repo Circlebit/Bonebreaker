@@ -26,11 +26,19 @@ namespace Bonebreaker
         //TODO: wohin mit dem Player? Trennung von "Charakter" und Spielerfigur in der WOrld?
         public int X { get; set; }
         public int Y { get; set; }
+        public char Symbol { get; set; }
 
         public Player(int x, int y)
         {
             X = x;
             Y = y;
+            Symbol = '☻';
+        }
+
+        public void Print()
+        {
+            Framework.SetCursorToMap(X, Y);
+            Console.Write(Symbol);
         }
     }
 

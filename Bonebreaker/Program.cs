@@ -18,12 +18,18 @@ namespace Bonebreaker
 
             Framework.PrintMapFrame(World_1.Map);
 
+            Player.Print();
+
             //TODO: Start a World
 
             //TODO: Player Movement
 
             //TODO: Mainloop (per World)
-
+            bool runMainloop = true;
+            while (runMainloop == true)
+            {
+                ConsoleKey inputKey = Console.ReadKey(true).Key;
+            }
         }
     }
 }
