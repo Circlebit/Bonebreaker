@@ -111,9 +111,17 @@ namespace Bonebreaker
         /// <summary>
         /// Moves the Enemy towards given coordinates
         /// </summary>
-        public void MoveTowards(int x, int y)
+        public void MoveTowards(int targetX, int targetY)
         {
-            //TODO: Implement Movement towards Coordinates
+            //TODO: implement more interesting algorithm, maybe some variations
+            if ( X > targetX )
+                StepIntoDirection(Direction.West);
+            else if ( X < targetX)
+                StepIntoDirection(Direction.East);
+            else if ( Y > targetY)
+                StepIntoDirection(Direction.North);
+            else if (Y < targetY)
+                StepIntoDirection(Direction.South);
         }
     }
 }

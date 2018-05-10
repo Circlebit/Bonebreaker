@@ -25,10 +25,11 @@ namespace Bonebreaker
             Player.Spawn(4, 2);
         }
 
-        public void SpawnEnemy(Enemy enemy)
+        public void SpawnEnemy(Enemy enemy, int x, int y)
         {
+            enemy.World = this;
             Enemies.Add(enemy);
-            enemy.Spawn(0, 0);
+            enemy.Spawn(x, y);
         }
     }
 }

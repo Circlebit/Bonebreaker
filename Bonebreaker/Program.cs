@@ -20,12 +20,12 @@ namespace Bonebreaker
             World_1.SpawnPlayer();
 
             Enemy e1 = new Enemy();
-            World_1.SpawnEnemy(e1);
+            World_1.SpawnEnemy(e1, 1, 1);
 
+            Enemy e2 = new Enemy();
+            World_1.SpawnEnemy(e2 , 70, 25);
 
             //TODO: Start a World
-
-            //TODO: Player Movement
 
             //TODO: Mainloop (per World)
             bool runMainloop = true;
@@ -50,7 +50,11 @@ namespace Bonebreaker
                         runMainloop = false;
                         break;
                 }
-                //Player.Print();
+
+                foreach (Enemy enemy in World_1.Enemies)
+                {
+                    enemy.MoveTowards(Player.X, Player.Y);
+                }
             }
         }
     }
