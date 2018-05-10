@@ -28,10 +28,7 @@ namespace Bonebreaker
             Enemy e2 = new Enemy();
             World_1.SpawnEnemy(e2 , 70, 25);
 
-
-
-
-            World_1.Map.PrintMap();
+            World_1.PrintMap();
 
             bool runMainloop = true;
             while (runMainloop == true)

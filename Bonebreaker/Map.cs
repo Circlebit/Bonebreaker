@@ -34,18 +34,7 @@ namespace Bonebreaker
             }
         }
 
-        public void PrintMap()
-        {
-            DrawMap();
-            for (int y = 0; y < Height; y++)
-            {
-                for (int x = 0; x < Width; x++)
-                {
-                    Framework.SetCursorToMap(x, y);
-                    Console.Write(Tile[x, y].Terrain.Symbol);
-                }
-            }
-        }
+
 
         public void DrawMap()
         {

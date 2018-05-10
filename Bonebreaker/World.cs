@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -18,6 +19,30 @@ namespace Bonebreaker
             Enemies = new List<Enemy>();
             Player = player;
             Player.World = this;
+        }
+
+        public void PrintMap()
+        {
+            Map.DrawMap();
+            for (int y = 0; y < Map.Height; y++)
+            {
+                for (int x = 0; x < Map.Width; x++)
+                {
+                    Framework.SetCursorToMap(x, y);
+                    Console.Write(Map.Tile[x, y].Terrain.Symbol);
+                }
+                DrawActors();
+            }
+        }
+
+        public void DrawActors()
+        {
+            Player.Print();
+            foreach (Enemy enemy in Enemies)
+            {
+                enemy.Print();
+            }
+            //TODO: Print Items
         }
 
         public void SpawnPlayer()
