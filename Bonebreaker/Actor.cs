@@ -126,4 +126,6 @@ namespace Bonebreaker
                 StepIntoDirection(Direction.South);
         }
     }
+
+    //TODO: Items Klasse
 }
