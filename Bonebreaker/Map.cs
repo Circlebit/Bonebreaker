@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
@@ -47,13 +48,36 @@ namespace Bonebreaker
                 }
             }
 
-            //TODO: testwänden entfernen
-            Tile[0, 1].Terrain = TerrainLibrary.Wall;
-            Tile[40, 15].Terrain = TerrainLibrary.Wall;
-
+            LoadMapFromFile(@"Maps\World_1.txt");
         }
 
         //TODO: Load Map from File - Just draw Terrains with texteditor. Define Enemy Type and Position
+        public void LoadMapFromFile(string fileName)
+        {
+            var lines = File.ReadLines(fileName);
+            int y = 0;
+            foreach (var line in lines)
+            {
+                for (int x = 0; x < Width; x++)
+                {
+                    Tile[x, y].Terrain = ParseMapFileChar(line[x]);
+                }
+
+                y++;
+            }
+        }
+
+        private TerrainObject ParseMapFileChar(char fileChar)
+        {
+            switch (fileChar)
+            {
+                case ' ': return TerrainLibrary.Empty;
+
+                case '▓': return TerrainLibrary.Wall;
+
+                default: return TerrainLibrary.Empty;
+            }
+        }
     }
 
     class Tile
@@ -93,6 +117,7 @@ namespace Bonebreaker
         public TerrainLibrary()
         {
             Empty = new TerrainObject(' ', true);
+
             Wall = new TerrainObject('▓', false);
         }
     }
