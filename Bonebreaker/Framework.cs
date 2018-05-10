@@ -6,13 +6,24 @@ using System.Threading.Tasks;
 
 namespace Bonebreaker
 {
+    #region Public Enums
+
+    public enum Direction
+    {
+        North,
+        South,
+        East,
+        West
+    };
+
+    #endregion
+
     static class Framework
     {
         public const int WindowHeight = 39;
         public const int WindowWidth = 120;
         public const int MapTopMargin = 2;
         public const int MapLeftMargin = 2;
-
 
         public static void SetupConsole()
         {
@@ -40,7 +51,7 @@ namespace Bonebreaker
             //Console.SetCursorPosition(MapLeftMargin+1, MapTopMargin);
             //Console.Write("╡Map╞");
 
-            for (int y = MapTopMargin + 1; y < map.Height + MapTopMargin; y++)
+            for (int y = MapTopMargin + 1; y < map.Height + MapTopMargin + 1; y++)
             {
                 Console.SetCursorPosition(MapLeftMargin, y);
                 Console.Write("║");
@@ -48,7 +59,7 @@ namespace Bonebreaker
                 Console.Write("║");
             }
 
-            Console.SetCursorPosition(MapLeftMargin, map.Height + MapTopMargin);
+            Console.SetCursorPosition(MapLeftMargin, map.Height + MapTopMargin + 1);
             Console.Write("╚");
             for (int x = 0; x < map.Width; x++)
             {

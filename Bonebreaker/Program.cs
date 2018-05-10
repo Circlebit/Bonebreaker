@@ -12,13 +12,12 @@ namespace Bonebreaker
         {
             Framework.SetupConsole();
             
-            Player Player = new Player(1, 1);
+            Player Player = new Player(9, 9);
 
-            World World_1 = new World(32, 100, Player);
+            World World_1 = new World(10, 10, Player);
 
             Framework.PrintMapFrame(World_1.Map);
-
-            Player.Print();
+            World_1.SpawPlayer();
 
             //TODO: Start a World
 
@@ -29,6 +28,23 @@ namespace Bonebreaker
             while (runMainloop == true)
             {
                 ConsoleKey inputKey = Console.ReadKey(true).Key;
+                switch (inputKey)
+                {
+                    case ConsoleKey.DownArrow:
+                        Player.MoveTo(Direction.South);
+                        break;
+                    case ConsoleKey.UpArrow:
+                        Player.MoveTo(Direction.North);
+                        break;
+                    case ConsoleKey.LeftArrow:
+                        Player.MoveTo(Direction.West);
+                        break;
+                    case ConsoleKey.RightArrow:
+                        Player.MoveTo(Direction.East);
+                        break;
+
+                }
+                //Player.Print();
             }
         }
     }
