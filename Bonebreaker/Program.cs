@@ -14,10 +14,14 @@ namespace Bonebreaker
             
             Player Player = new Player(15, 7);
 
-            World World_1 = new World(30, 15, Player);
+            World World_1 = new World(90, 30, Player);
 
             Framework.PrintMapFrame(World_1.Map);
-            World_1.SpawPlayer();
+            World_1.SpawnPlayer();
+
+            Enemy e1 = new Enemy();
+            World_1.SpawnEnemy(e1);
+
 
             //TODO: Start a World
 
@@ -31,16 +35,16 @@ namespace Bonebreaker
                 switch (inputKey)
                 {
                     case ConsoleKey.DownArrow:
-                        Player.MoveTo(Direction.South);
+                        Player.StepIntoDirection(Direction.South);
                         break;
                     case ConsoleKey.UpArrow:
-                        Player.MoveTo(Direction.North);
+                        Player.StepIntoDirection(Direction.North);
                         break;
                     case ConsoleKey.LeftArrow:
-                        Player.MoveTo(Direction.West);
+                        Player.StepIntoDirection(Direction.West);
                         break;
                     case ConsoleKey.RightArrow:
-                        Player.MoveTo(Direction.East);
+                        Player.StepIntoDirection(Direction.East);
                         break;
                     case ConsoleKey.Escape:
                         runMainloop = false;
