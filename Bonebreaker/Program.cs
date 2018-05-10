@@ -12,9 +12,9 @@ namespace Bonebreaker
         {
             Framework.SetupConsole();
             
-            Player Player = new Player(9, 9);
+            Player Player = new Player(15, 7);
 
-            World World_1 = new World(10, 10, Player);
+            World World_1 = new World(30, 15, Player);
 
             Framework.PrintMapFrame(World_1.Map);
             World_1.SpawPlayer();
@@ -42,7 +42,9 @@ namespace Bonebreaker
                     case ConsoleKey.RightArrow:
                         Player.MoveTo(Direction.East);
                         break;
-
+                    case ConsoleKey.Escape:
+                        runMainloop = false;
+                        break;
                 }
                 //Player.Print();
             }

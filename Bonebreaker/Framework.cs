@@ -51,6 +51,7 @@ namespace Bonebreaker
             //Console.SetCursorPosition(MapLeftMargin+1, MapTopMargin);
             //Console.Write("╡Map╞");
 
+            //TODO: Rechts und links ein zeichen Abstand damit der Abstand zum Rahmen gleich aussieht wie oben und unten
             for (int y = MapTopMargin + 1; y < map.Height + MapTopMargin + 1; y++)
             {
                 Console.SetCursorPosition(MapLeftMargin, y);

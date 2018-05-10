@@ -12,9 +12,9 @@ namespace Bonebreaker
         public Map Map { get; }
         public Player Player { get; set; }
 
-        public World(int mapHeight, int mapWidth, Player player)
+        public World(int mapWidth, int mapHeight, Player player)
         {
-            Map = new Map(mapHeight, mapWidth);
+            Map = new Map(mapWidth, mapHeight);
             Player = player;
             Player.World = this;
         }
@@ -49,7 +49,7 @@ namespace Bonebreaker
                 case Direction.South:
                     if (Y < World.Map.Height - 1)
                     {
-                        Clear();
+                        Clear(); //TODO: Flackern bei Bewegung - Erst Print dann Clear?
                         Y++;
                         Print();
                     }

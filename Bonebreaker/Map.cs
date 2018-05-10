@@ -11,18 +11,19 @@ namespace Bonebreaker
     {
         public Tile[,] Tile { get; }
 
-        public int Height { get; }
         public int Width { get; }
+        public int Height { get; }
 
-        public Map(int height, int width)
+
+        public Map(int width, int height)
         {
-            Height = height;
             Width = width;
-
-            Tile = new Tile[Height,Width];
-            for (int y = 0; y < Width; y++)
+            Height = height;
+            
+            Tile = new Tile[Width,Height];
+            for (int y = 0; y < Height; y++)
             {
-                for (int x = 0; x < Height; x++)
+                for (int x = 0; x < Width; x++)
                 {
                     Tile[x,y] = new Tile(x,y);
                 }
