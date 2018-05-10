@@ -41,32 +41,31 @@ namespace Bonebreaker
             Console.SetCursorPosition(MapLeftMargin, MapTopMargin - 1);
             Console.Write(" Map ");
             Console.SetCursorPosition(MapLeftMargin, MapTopMargin);
-            Console.Write("╔");
+            Console.Write("╔═");
             for (int x = 0; x < map.Width; x++)
             {
                 Console.Write("═");
             }
-            Console.Write("╗");
+            Console.Write("═╗");
 
             //Console.SetCursorPosition(MapLeftMargin+1, MapTopMargin);
             //Console.Write("╡Map╞");
 
-            //TODO: Rechts und links ein zeichen Abstand damit der Abstand zum Rahmen gleich aussieht wie oben und unten
             for (int y = MapTopMargin + 1; y < map.Height + MapTopMargin + 1; y++)
             {
                 Console.SetCursorPosition(MapLeftMargin, y);
-                Console.Write("║");
-                Console.SetCursorPosition(map.Width + MapLeftMargin + 1, y);
-                Console.Write("║");
+                Console.Write("║ ");
+                Console.SetCursorPosition(map.Width + MapLeftMargin + 2, y);
+                Console.Write(" ║");
             }
 
             Console.SetCursorPosition(MapLeftMargin, map.Height + MapTopMargin + 1);
-            Console.Write("╚");
+            Console.Write("╚═");
             for (int x = 0; x < map.Width; x++)
             {
                 Console.Write("═");
             }
-            Console.Write("╝");
+            Console.Write("═╝");
         }
 
         /// <summary>
@@ -76,7 +75,7 @@ namespace Bonebreaker
         /// <param name="Y"></param>
         public static void SetCursorToMap(int X, int Y)
         {
-            Console.SetCursorPosition(X + MapLeftMargin + 1, Y + MapTopMargin + 1);
+            Console.SetCursorPosition(X + MapLeftMargin + 2, Y + MapTopMargin + 1);
         }
     }
 }
