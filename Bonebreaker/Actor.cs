@@ -4,6 +4,7 @@ namespace Bonebreaker
 {
     abstract class Actor
     {
+        //TODO: Colors
         public int X { get; set; }
         public int Y { get; set; }
         public World World { get; set; }

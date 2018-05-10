@@ -75,6 +75,8 @@ namespace Bonebreaker
 
                 case '▓': return TerrainLibrary.Wall;
 
+                //TODO: Enemies einsetzen mit Terrain.Empty darunter case 'E':
+
                 default: return TerrainLibrary.Empty;
             }
         }
@@ -95,6 +97,7 @@ namespace Bonebreaker
 
     class TerrainObject
     {
+        //TODO: Colors for Terrains
         public char Symbol { get; set; }
         public bool UnitsCanEnter { get; set; }
 
