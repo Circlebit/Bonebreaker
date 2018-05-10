@@ -11,7 +11,10 @@ namespace Bonebreaker
         static void Main(string[] args)
         {
             Framework.SetupConsole();
-            
+
+            //TODO: Game Starten
+            //TODO: World Starten
+
             Player Player = new Player(15, 7);
 
             World World_1 = new World(90, 30, Player);
@@ -25,9 +28,11 @@ namespace Bonebreaker
             Enemy e2 = new Enemy();
             World_1.SpawnEnemy(e2 , 70, 25);
 
-            //TODO: Start a World
 
-            //TODO: Mainloop (per World)
+
+
+            World_1.Map.PrintMap();
+
             bool runMainloop = true;
             while (runMainloop == true)
             {

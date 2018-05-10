@@ -23,23 +23,24 @@ namespace Bonebreaker
             switch (direction)
             {
                 case Direction.South:
-                    if (Y < World.Map.Height - 1)
+                    if (Y < World.Map.Height - 1 && World.Map.Tile[X, Y + 1].Terrain.UnitsCanEnter)
                     {
-                        Clear(); //TODO: Flackern bei Bewegung - Erst Print dann Clear?
+                        Clear();
                         Y++;
                         Print();
                     }
                     break;
                 case Direction.North:
-                    if (Y > 0)
+                    if (Y > 0 && World.Map.Tile[X, Y - 1].Terrain.UnitsCanEnter)
                     {
-                        Clear();
+                        Clear(); //TODO: Flackern bei Bewegung - Erst Print dann Clear?
                         Y--;
                         Print();
+
                     }
                     break;
                 case Direction.East:
-                    if (X < World.Map.Width - 1)
+                    if (X < World.Map.Width - 1 && World.Map.Tile[X + 1, Y].Terrain.UnitsCanEnter)
                     {
                         Clear();
                         X++;
@@ -47,7 +48,7 @@ namespace Bonebreaker
                     }
                     break;
                 case Direction.West:
-                    if (X > 0)
+                    if (X > 0 && World.Map.Tile[X - 1, Y].Terrain.UnitsCanEnter)
                     {
                         Clear();
                         X--;

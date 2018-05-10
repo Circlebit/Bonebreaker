@@ -9,16 +9,20 @@ namespace Bonebreaker
 {
     class Map
     {
-        public Tile[,] Tile { get; }
+        public Tile[,] Tile { get; set; }
 
         public int Width { get; }
         public int Height { get; }
+
+        public TerrainLibrary TerrainLibrary { get; }
+        public TerrainObject Terrain { get; set; }
 
 
         public Map(int width, int height)
         {
             Width = width;
             Height = height;
+            TerrainLibrary = new TerrainLibrary();
             
             Tile = new Tile[Width,Height];
             for (int y = 0; y < Height; y++)
@@ -30,6 +34,36 @@ namespace Bonebreaker
             }
         }
 
+        public void PrintMap()
+        {
+            DrawMap();
+            for (int y = 0; y < Height; y++)
+            {
+                for (int x = 0; x < Width; x++)
+                {
+                    Framework.SetCursorToMap(x, y);
+                    Console.Write(Tile[x, y].Terrain.Symbol);
+                }
+            }
+        }
+
+        public void DrawMap()
+        {
+            //TODO irgendwo Daten herholen statt alles mit Empty
+            for (int y = 0; y < Height; y++)
+            {
+                for (int x = 0; x < Width; x++)
+                {
+                    Tile[x, y].Terrain = TerrainLibrary.Empty;
+                }
+            }
+
+            //TODO: testwänden entfernen
+            Tile[0, 1].Terrain = TerrainLibrary.Wall;
+            Tile[40, 15].Terrain = TerrainLibrary.Wall;
+
+        }
+
         //TODO: Load Map from File - Just draw Terrains with texteditor. Define Enemy Type and Position
     }
 
@@ -37,9 +71,8 @@ namespace Bonebreaker
     {
         public int X { get; }
         public int Y { get; }
-
-        //TODO: enum für Geländearten
-
+        public TerrainObject Terrain { get; set; }
+        
         public Tile(int x, int y)
         {
             X = x;
@@ -60,9 +93,18 @@ namespace Bonebreaker
         }
     }
 
-    class Terrain
+    class TerrainLibrary
     {
         //TODO: mehr Geländearten (Wände, Gewässer und mehr)
-        public TerrainObject Empty = new TerrainObject(' ', true);
+
+        public TerrainObject Empty { get; }
+        public TerrainObject Wall { get; }
+
+
+        public TerrainLibrary()
+        {
+            Empty = new TerrainObject(' ', true);
+            Wall = new TerrainObject('▓', false);
+        }
     }
 }
