@@ -42,6 +42,7 @@ namespace Bonebreaker
         public int X { get; }
         public int Y { get; }
         public TerrainObject Terrain { get; set; }
+        public bool IsOccupied { get; set; }
         
         public Tile(int x, int y)
         {
@@ -71,6 +72,7 @@ namespace Bonebreaker
             BackgroundColor = backgroundColor;
             Name = name;
             //TODO: mehr Eigenschaften von Geländearten
+            //TODO: bool Occupied if Actor there
         }
     }
 

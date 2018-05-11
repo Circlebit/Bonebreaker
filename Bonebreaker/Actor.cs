@@ -30,35 +30,46 @@ namespace Bonebreaker
         /// </summary>
         public void StepIntoDirection(Direction direction, int steps = 1)
         {
+            Tile targetTile;
             switch (direction)
             {
                 case Direction.South:
-                    if (Y < World.Map.Height - 1 && World.Map.Tile[X, Y + 1].Terrain.UnitsCanEnter)
+                    if (Y < World.Map.Height - 1 &&
+                        World.Map.Tile[X, Y + 1].Terrain.UnitsCanEnter && 
+                        !World.Map.Tile[X, Y + 1].IsOccupied)
                     {
                         Clear();
                         Y++;
                         Print();
                     }
                     break;
+
                 case Direction.North:
-                    if (Y > 0 && World.Map.Tile[X, Y - 1].Terrain.UnitsCanEnter)
+                    if (Y > 0 &&
+                        World.Map.Tile[X, Y - 1].Terrain.UnitsCanEnter && 
+                        !World.Map.Tile[X, Y - 1].IsOccupied)
                     {
                         Clear();
                         Y--;
                         Print();
-
                     }
                     break;
+
                 case Direction.East:
-                    if (X < World.Map.Width - 1 && World.Map.Tile[X + 1, Y].Terrain.UnitsCanEnter)
+                    if (X < World.Map.Width - 1 && 
+                        World.Map.Tile[X + 1, Y].Terrain.UnitsCanEnter && 
+                        !World.Map.Tile[X + 1, Y].IsOccupied)
                     {
                         Clear();
                         X++;
                         Print();
                     }
                     break;
+
                 case Direction.West:
-                    if (X > 0 && World.Map.Tile[X - 1, Y].Terrain.UnitsCanEnter)
+                    if (X > 0 && 
+                        World.Map.Tile[X - 1, Y].Terrain.UnitsCanEnter && 
+                        !World.Map.Tile[X - 1, Y].IsOccupied)
                     {
                         Clear();
                         X--;
@@ -88,6 +99,7 @@ namespace Bonebreaker
             Console.ForegroundColor = Color;
             Console.BackgroundColor = World.Map.Tile[X, Y].Terrain.BackgroundColor;
             Console.Write(Symbol);
+            World.Map.Tile[X, Y].IsOccupied = true;
         }
 
         protected internal void Clear()
@@ -96,7 +108,7 @@ namespace Bonebreaker
             Console.ForegroundColor = World.Map.Tile[X, Y].Terrain.ForegroundColor;
             Console.BackgroundColor = World.Map.Tile[X, Y].Terrain.BackgroundColor;
             Console.Write(' ');
-            
+            World.Map.Tile[X, Y].IsOccupied = false;
         }
 
         #endregion
@@ -105,7 +117,7 @@ namespace Bonebreaker
 
     class Player : Actor
     {
-        public int Health { get; set; }
+        public int Health { get; set; } //TODO: end game when 0
 
         public Player(int x, int y, World world = null) : base (x, y, world)
         {
@@ -159,11 +171,13 @@ namespace Bonebreaker
             if (CollisionWithPlayer())
             {
                 World.Player.Health--;
+                //TODO: delete enemy
+                //TODO: play sound
                 Framework.PrintInfo(World);
             }
         }
 
-        public bool CollisionWithPlayer()
+        public bool CollisionWithPlayer() //TODO: Use this before the IsOccupied so there is an actual collision between player and enemy
         {
             return X == World.Player.X && Y == World.Player.Y;
         }
