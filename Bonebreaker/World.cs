@@ -48,6 +48,12 @@ namespace Bonebreaker
             //TODO: Print Items
         }
 
+        public void Win()
+        {
+            Console.SetCursorPosition(60,15);
+            Console.Write("WIN WIN WIN");
+        }
+
         public void SpawnPlayer()
         {
             Player.Spawn(4, 2);
@@ -110,6 +116,8 @@ namespace Bonebreaker
                 case ' ': return Map.TerrainLibrary.Empty;
 
                 case '▓': return Map.TerrainLibrary.Wall;
+
+                case '▲': return Map.TerrainLibrary.Goal;
 
                 default: return Map.TerrainLibrary.Empty;
             }

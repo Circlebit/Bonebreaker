@@ -33,6 +33,8 @@ namespace Bonebreaker
             Tile targetTile;
             switch (direction)
             {
+                //TODO: Cleaner Code!
+                //TODO: React on Goal (does this even belong here?)
                 case Direction.South:
                     if (Y < World.Map.Height - 1 &&
                         World.Map.Tile[X, Y + 1].Terrain.UnitsCanEnter) // && 
@@ -40,6 +42,10 @@ namespace Bonebreaker
                     {
                         Clear();
                         Y++;
+                        //if (World.Map.Tile[X, Y + 1].Terrain == World.Map.TerrainLibrary.Goal)
+                        //{
+                        //    World.Win();
+                        //}
                         Print();
                     }
                     break;
@@ -80,6 +86,13 @@ namespace Bonebreaker
 
         }
 
+        /// <summary>
+        /// True if the Actor is on the same Tile as the Player
+        /// </summary>
+        public bool CollisionWithPlayer()
+        {
+            return X == World.Player.X && Y == World.Player.Y;
+        }
 
         public void Spawn(int x, int y)
         {
@@ -178,11 +191,6 @@ namespace Bonebreaker
                 //TODO: play sound
                 Framework.PrintInfo(World);
             }
-        }
-
-        public bool CollisionWithPlayer() //TODO: Use this before the IsOccupied so there is an actual collision between player and enemy
-        {
-            return X == World.Player.X && Y == World.Player.Y;
         }
 
         //public void Kill()

@@ -85,6 +85,7 @@ namespace Bonebreaker
 
         public TerrainObject Empty { get; }
         public TerrainObject Wall { get; }
+        public TerrainObject Goal { get; }
 
         public List<TerrainObject> TerrainObjectList { get; }
 
@@ -107,6 +108,14 @@ namespace Bonebreaker
                 backgroundColor: ConsoleColor.DarkGreen,
                 unitsCanEnter: false);
             TerrainObjectList.Add(Wall);
+
+            Goal = new TerrainObject(
+                symbol: '▲',
+                name: "Ziel",
+                foregroundColor: ConsoleColor.Magenta,
+                backgroundColor: ConsoleColor.DarkGreen,
+                unitsCanEnter: true);
+            TerrainObjectList.Add(Goal);
         }
     }
 }
