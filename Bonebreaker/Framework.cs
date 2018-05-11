@@ -24,6 +24,9 @@ namespace Bonebreaker
         public const int WindowWidth = 120;
         public const int MapTopMargin = 2;
         public const int MapLeftMargin = 2;
+        public const ConsoleColor DefaultForeColor = ConsoleColor.Black;
+        public const ConsoleColor DefaultBackColor = ConsoleColor.DarkGray;
+
 
         public static void SetupConsole()
         {
@@ -33,6 +36,8 @@ namespace Bonebreaker
             Console.SetWindowSize(WindowWidth, WindowHeight);
             Console.BufferHeight = WindowHeight;
             Console.BufferWidth = WindowWidth;
+            Console.BackgroundColor = DefaultBackColor;
+            Console.ForegroundColor = DefaultForeColor;
             Console.Clear();
         }
 

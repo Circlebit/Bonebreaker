@@ -29,6 +29,8 @@ namespace Bonebreaker
                 for (int x = 0; x < Map.Width; x++)
                 {
                     Framework.SetCursorToMap(x, y);
+                    Console.ForegroundColor = Map.Tile[x, y].Terrain.ForegroundColor;
+                    Console.BackgroundColor = Map.Tile[x, y].Terrain.BackgroundColor;
                     Console.Write(Map.Tile[x, y].Terrain.Symbol);
                 }
                 DrawActors();

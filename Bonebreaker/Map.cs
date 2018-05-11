@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Dynamic;
 using System.IO;
 using System.Linq;
 using System.Security.Cryptography.X509Certificates;
@@ -58,11 +59,14 @@ namespace Bonebreaker
             int y = 0;
             foreach (var line in lines)
             {
-                for (int x = 0; x < Width; x++)
+                // Parse the Map part of the map file
+                if (y < Height)
                 {
-                    Tile[x, y].Terrain = ParseMapFileChar(line[x]);
+                    for (int x = 0; x < Width; x++)
+                    {
+                        Tile[x, y].Terrain = ParseMapFileChar(line[x]);
+                    }
                 }
-
                 y++;
             }
         }
@@ -76,6 +80,7 @@ namespace Bonebreaker
                 case '▓': return TerrainLibrary.Wall;
 
                 //TODO: Enemies einsetzen mit Terrain.Empty darunter case 'E':
+                //case 
 
                 default: return TerrainLibrary.Empty;
             }
@@ -99,12 +104,16 @@ namespace Bonebreaker
     {
         //TODO: Colors for Terrains
         public char Symbol { get; set; }
+        public ConsoleColor ForegroundColor { get; set; }
+        public ConsoleColor BackgroundColor { get; set; }
         public bool UnitsCanEnter { get; set; }
 
-        public TerrainObject(char symbol, bool unitsCanEnter)
+        public TerrainObject(char symbol, bool unitsCanEnter, ConsoleColor foregroundColor, ConsoleColor backgroundColor)
         {
             Symbol = symbol;
             UnitsCanEnter = unitsCanEnter;
+            ForegroundColor = foregroundColor;
+            BackgroundColor = backgroundColor;
             //TODO: mehr Eigenschaften von Geländearten
         }
     }
@@ -119,9 +128,17 @@ namespace Bonebreaker
 
         public TerrainLibrary()
         {
-            Empty = new TerrainObject(' ', true);
+            Empty = new TerrainObject(
+                symbol: ' ',
+                foregroundColor: ConsoleColor.Black,
+                backgroundColor: ConsoleColor.DarkGreen,
+                unitsCanEnter: true);
 
-            Wall = new TerrainObject('▓', false);
+            Wall = new TerrainObject(
+                symbol: '▓',
+                foregroundColor: ConsoleColor.Black,
+                backgroundColor: ConsoleColor.DarkGreen,
+                unitsCanEnter: false);
         }
     }
 }

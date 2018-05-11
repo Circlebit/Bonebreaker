@@ -2,6 +2,9 @@
 
 namespace Bonebreaker
 {
+    /// <summary>
+    /// abstract class to derive Player, Enemy and Item from
+    /// </summary>
     abstract class Actor
     {
         //TODO: Colors
@@ -9,16 +12,21 @@ namespace Bonebreaker
         public int Y { get; set; }
         public World World { get; set; }
         public char Symbol { get; set; }
+        public ConsoleColor Color { get; set; }
 
         protected Actor(int x, int y)
         {
             X = x;
             Y = y;
+            Color = ConsoleColor.Black;
         }
 
 
         #region Public Methods
 
+        /// <summary>
+        /// move this Actor into a direction
+        /// </summary>
         public void StepIntoDirection(Direction direction, int steps = 1)
         {
             switch (direction)
@@ -70,11 +78,12 @@ namespace Bonebreaker
         #endregion
 
 
-        #region Private Methods
+        #region Internal Methods
 
         protected internal void Print()
         {
             Framework.SetCursorToMap(X, Y);
+            Console.ForegroundColor = Color;
             Console.Write(Symbol);
         }
 
@@ -96,6 +105,7 @@ namespace Bonebreaker
             X = x;
             Y = y;
             Symbol = '☻';
+            Color = ConsoleColor.DarkBlue;
         }
     }
 
@@ -108,6 +118,7 @@ namespace Bonebreaker
             X = x;
             Y = y;
             Symbol = '¥';
+            Color = ConsoleColor.White;
         }
 
         /// <summary>
@@ -127,5 +138,13 @@ namespace Bonebreaker
         }
     }
 
-    //TODO: Items Klasse
+    class Item : Actor
+    {
+        public Item(int x, int y) : base(x, y)
+        {
+            X = x;
+            Y = y;
+            Symbol = '☼';
+        }
+    }
 }
