@@ -48,7 +48,7 @@ namespace Bonebreaker
                 }
             }
 
-            LoadMapFromFile(@"Maps\World_1.txt");
+            LoadMapFromFile(@"..\..\Maps\World_1.txt");
         }
 
         //TODO: Load Map from File - Just draw Terrains with texteditor. Define Enemy Type and Position
