@@ -43,7 +43,7 @@ namespace Bonebreaker
                 case Direction.North:
                     if (Y > 0 && World.Map.Tile[X, Y - 1].Terrain.UnitsCanEnter)
                     {
-                        Clear(); //TODO: Flackern bei Bewegung - Erst Print dann Clear?
+                        Clear();
                         Y--;
                         Print();
 
@@ -69,6 +69,7 @@ namespace Bonebreaker
 
         }
 
+
         public void Spawn(int x, int y)
         {
             X = x;
@@ -85,14 +86,17 @@ namespace Bonebreaker
         {
             Framework.SetCursorToMap(X, Y);
             Console.ForegroundColor = Color;
+            Console.BackgroundColor = World.Map.Tile[X, Y].Terrain.BackgroundColor;
             Console.Write(Symbol);
         }
 
         protected internal void Clear()
         {
             Framework.SetCursorToMap(X, Y);
+            Console.ForegroundColor = World.Map.Tile[X, Y].Terrain.ForegroundColor;
+            Console.BackgroundColor = World.Map.Tile[X, Y].Terrain.BackgroundColor;
             Console.Write(' ');
-            //TODO: print terrain instead blank space
+            
         }
 
         #endregion
@@ -101,13 +105,17 @@ namespace Bonebreaker
 
     class Player : Actor
     {
+        public int Health { get; set; }
+
         public Player(int x, int y, World world = null) : base (x, y, world)
         {
             X = x;
             Y = y;
             Symbol = '☻';
             Color = ConsoleColor.Yellow;
+            Health = 3;
         }
+
     }
 
     class Enemy : Actor
@@ -131,14 +139,33 @@ namespace Bonebreaker
         public void MoveTowards(int targetX, int targetY)
         {
             //TODO: implement more interesting algorithm, maybe some variations
-            if ( X > targetX )
+            if (X > targetX)
+            {
                 StepIntoDirection(Direction.West);
-            else if ( X < targetX)
+            }
+            else if (X < targetX)
+            {
                 StepIntoDirection(Direction.East);
-            else if ( Y > targetY)
+            }
+            else if (Y > targetY)
+            {
                 StepIntoDirection(Direction.North);
+            }
             else if (Y < targetY)
+            {
                 StepIntoDirection(Direction.South);
+            }
+
+            if (CollisionWithPlayer())
+            {
+                World.Player.Health--;
+                Framework.PrintInfo(World);
+            }
+        }
+
+        public bool CollisionWithPlayer()
+        {
+            return X == World.Player.X && Y == World.Player.Y;
         }
     }
 

@@ -21,11 +21,12 @@ namespace Bonebreaker
             Player.World = World_1;
             World_1.LoadMapFromFile(@"..\..\Maps\World_1.txt");
 
-            Framework.PrintMapFrame(World_1.Map);
+            Framework.PrintFrames(World_1.Map);
             World_1.SpawnPlayer();
             World_1.SpawnEnemies();
 
             World_1.PrintMap();
+            Framework.PrintInfo(World_1);
 
             bool runMainloop = true;
             while (runMainloop == true)

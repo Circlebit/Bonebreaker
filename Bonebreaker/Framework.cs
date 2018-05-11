@@ -41,6 +41,12 @@ namespace Bonebreaker
             Console.Clear();
         }
 
+        public static void PrintFrames(Map map)
+        {
+            PrintMapFrame(map);
+            PrintRightFrame(map);
+        }
+
         public static void PrintMapFrame(Map map)
         {
             Console.SetCursorPosition(MapLeftMargin, MapTopMargin - 1);
@@ -71,6 +77,81 @@ namespace Bonebreaker
                 Console.Write("═");
             }
             Console.Write("═╝");
+        }
+
+        private static int GetRightFrameTopLeftX(Map map)
+        {
+            return map.Width + 3 * MapLeftMargin + 1;
+        }
+
+        private static int GetRightFrameWidth(Map map)
+        {
+            return WindowWidth - GetRightFrameTopLeftX(map) - 2 * MapLeftMargin;
+        }
+
+        public static void PrintRightFrame(Map map)
+        {
+            int frameTopLeftX = GetRightFrameTopLeftX(map);
+            int frameWidth = GetRightFrameWidth(map);
+
+            Console.SetCursorPosition(frameTopLeftX, MapTopMargin - 1);
+            Console.Write(" Info ");
+            Console.SetCursorPosition(frameTopLeftX, MapTopMargin);
+            Console.Write("╔═");
+            for (int x = 0; x < frameWidth; x++)
+            {
+                Console.Write("═");
+            }
+            Console.Write("═╗");
+
+            //Console.SetCursorPosition(frameTopLeftX + 1, MapTopMargin);
+            //Console.Write("╡Charakter╞");
+
+            for (int y = MapTopMargin + 1; y < WindowHeight - MapTopMargin + 1; y++)
+            {
+                Console.SetCursorPosition(frameTopLeftX, y);
+                Console.Write("║");
+                Console.SetCursorPosition(frameWidth + frameTopLeftX + 3, y);
+                Console.Write("║");
+            }
+
+            Console.SetCursorPosition(frameTopLeftX, WindowHeight - MapTopMargin);
+            Console.Write("╚═");
+            for (int x = 0; x < frameWidth; x++)
+            {
+                Console.Write("═");
+            }
+            Console.Write("═╝");
+        }
+
+
+        public static void PrintInfo(World world)
+        {
+            int frameTopLeftX = GetRightFrameTopLeftX(world.Map);
+            int frameWidth = GetRightFrameWidth(world.Map);
+
+            Console.SetCursorPosition(frameTopLeftX + 1, MapTopMargin + 1);
+            Console.BackgroundColor = DefaultBackColor;
+            Console.ForegroundColor = DefaultForeColor;
+            Console.Write(" Health:");
+
+            Console.ForegroundColor = ConsoleColor.DarkRed;
+            StringBuilder healthbar = new StringBuilder();
+            int h = world.Player.Health;
+            for (int i = 0; i < 6; i++)
+            {
+                if (h > 0)
+                {
+                    healthbar.Append(" ♥");
+                }
+                else
+                {
+                    healthbar.Append("  ");
+                }
+                h--;
+            }
+            Console.Write(healthbar);
+
         }
 
         /// <summary>
