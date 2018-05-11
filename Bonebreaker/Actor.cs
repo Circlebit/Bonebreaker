@@ -35,8 +35,8 @@ namespace Bonebreaker
             {
                 case Direction.South:
                     if (Y < World.Map.Height - 1 &&
-                        World.Map.Tile[X, Y + 1].Terrain.UnitsCanEnter && 
-                        !World.Map.Tile[X, Y + 1].IsOccupied)
+                        World.Map.Tile[X, Y + 1].Terrain.UnitsCanEnter) // && 
+                        //!World.Map.Tile[X, Y + 1].IsOccupied)
                     {
                         Clear();
                         Y++;
@@ -46,8 +46,8 @@ namespace Bonebreaker
 
                 case Direction.North:
                     if (Y > 0 &&
-                        World.Map.Tile[X, Y - 1].Terrain.UnitsCanEnter && 
-                        !World.Map.Tile[X, Y - 1].IsOccupied)
+                        World.Map.Tile[X, Y - 1].Terrain.UnitsCanEnter) // && 
+                        // !World.Map.Tile[X, Y - 1].IsOccupied)
                     {
                         Clear();
                         Y--;
@@ -57,8 +57,8 @@ namespace Bonebreaker
 
                 case Direction.East:
                     if (X < World.Map.Width - 1 && 
-                        World.Map.Tile[X + 1, Y].Terrain.UnitsCanEnter && 
-                        !World.Map.Tile[X + 1, Y].IsOccupied)
+                        World.Map.Tile[X + 1, Y].Terrain.UnitsCanEnter) // && 
+                        //!World.Map.Tile[X + 1, Y].IsOccupied)
                     {
                         Clear();
                         X++;
@@ -68,8 +68,8 @@ namespace Bonebreaker
 
                 case Direction.West:
                     if (X > 0 && 
-                        World.Map.Tile[X - 1, Y].Terrain.UnitsCanEnter && 
-                        !World.Map.Tile[X - 1, Y].IsOccupied)
+                        World.Map.Tile[X - 1, Y].Terrain.UnitsCanEnter) // && 
+                        //!World.Map.Tile[X - 1, Y].IsOccupied)
                     {
                         Clear();
                         X--;
@@ -134,6 +134,7 @@ namespace Bonebreaker
     {
         public bool CanCrossObstacles { get; set; }  // "flying"
         public int Id { get; set; }
+        public bool Alive { get; set; }
         
         public Enemy(int x, int y, int id, World world) : base(x, y, world)
         {
@@ -143,6 +144,7 @@ namespace Bonebreaker
             Id = id;
             Symbol = '¥';
             Color = ConsoleColor.White;
+            Alive = true;
         }
 
         /// <summary>
@@ -171,6 +173,7 @@ namespace Bonebreaker
             if (CollisionWithPlayer())
             {
                 World.Player.Health--;
+                Alive = false;
                 //TODO: delete enemy
                 //TODO: play sound
                 Framework.PrintInfo(World);
@@ -181,6 +184,19 @@ namespace Bonebreaker
         {
             return X == World.Player.X && Y == World.Player.Y;
         }
+
+        //public void Kill()
+        //{
+        //    //foreach (Enemy enemy in World.Enemies)
+        //    //{
+        //    //    if (this.Id == enemy.Id)
+        //    //    {
+        //    //        World.Enemies.Remove(enemy);
+        //    //    }
+        //    //}
+        //    World.Enemies.RemoveAll(x => x.Id == this.Id);
+        //    Clear();
+        //}
     }
 
     class Item : Actor

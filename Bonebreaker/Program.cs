@@ -54,7 +54,11 @@ namespace Bonebreaker
                 foreach (Enemy enemy in World_1.Enemies)
                 {
                     enemy.MoveTowards(Player.X, Player.Y);
+
                 }
+
+                World_1.Enemies.RemoveAll(x => x.Alive == false);
+
             }
         }
     }
