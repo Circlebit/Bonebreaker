@@ -14,11 +14,12 @@ namespace Bonebreaker
         public char Symbol { get; set; }
         public ConsoleColor Color { get; set; }
 
-        protected Actor(int x, int y)
+        protected Actor(int x, int y, World world)
         {
             X = x;
             Y = y;
             Color = ConsoleColor.Black;
+            World = world;
         }
 
 
@@ -100,23 +101,26 @@ namespace Bonebreaker
 
     class Player : Actor
     {
-        public Player(int x, int y) : base (x, y)
+        public Player(int x, int y, World world = null) : base (x, y, world)
         {
             X = x;
             Y = y;
             Symbol = '☻';
-            Color = ConsoleColor.DarkBlue;
+            Color = ConsoleColor.Yellow;
         }
     }
 
     class Enemy : Actor
     {
         public bool CanCrossObstacles { get; set; }  // "flying"
+        public int Id { get; set; }
         
-        public Enemy(int x = 0, int y = 0) : base(x, y)
+        public Enemy(int x, int y, int id, World world) : base(x, y, world)
         {
             X = x;
             Y = y;
+            World = world;
+            Id = id;
             Symbol = '¥';
             Color = ConsoleColor.White;
         }
@@ -140,10 +144,11 @@ namespace Bonebreaker
 
     class Item : Actor
     {
-        public Item(int x, int y) : base(x, y)
+        public Item(int x, int y, World world) : base(x, y, world)
         {
             X = x;
             Y = y;
+            World = world;
             Symbol = '☼';
         }
     }

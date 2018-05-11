@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -23,7 +25,6 @@ namespace Bonebreaker
 
         public void PrintMap()
         {
-            Map.DrawMap();
             for (int y = 0; y < Map.Height; y++)
             {
                 for (int x = 0; x < Map.Width; x++)
@@ -52,11 +53,66 @@ namespace Bonebreaker
             Player.Spawn(4, 2);
         }
 
+        /// <summary>
+        /// Spawn all Enemies from Enemies List (use this to set up the Enemies loaded from Map file)
+        /// </summary>
+        public void SpawnEnemies()
+        {
+            foreach (Enemy enemy in Enemies)
+            {
+                enemy.World = this;
+            }
+        }
+
+        /// <summary>
+        /// Spawn new Enemie
+        /// </summary>
         public void SpawnEnemy(Enemy enemy, int x, int y)
         {
             enemy.World = this;
             Enemies.Add(enemy);
             enemy.Spawn(x, y);
+        }
+
+        public void AddEnemyToList(Enemy enemy)
+        {
+            Enemies.Add(enemy);
+        }
+
+        //TODO: Load Map from File - Just draw Terrains with texteditor. Define Enemy Type and Position
+        public void LoadMapFromFile(string fileName)
+        {
+            var lines = File.ReadLines(fileName);
+            int y = 0;
+            foreach (var line in lines)
+            {
+                // Parse the Map part of the map file
+                if (y < Map.Height)
+                {
+                    for (int x = 0; x < Map.Width; x++)
+                    {
+                        Map.Tile[x, y].Terrain = MapFileCharToTerrain(line[x]);
+                        if (Char.IsDigit(line[x]))
+                        {
+                            Enemies.Add(new Enemy(x, y, int.Parse(line[x].ToString()), this));
+                        }
+                    }
+                }
+                y++;
+            }
+        }
+
+
+        private TerrainObject MapFileCharToTerrain(char fileChar)
+        {
+            switch (fileChar)
+            {
+                case ' ': return Map.TerrainLibrary.Empty;
+
+                case '▓': return Map.TerrainLibrary.Wall;
+
+                default: return Map.TerrainLibrary.Empty;
+            }
         }
     }
 }

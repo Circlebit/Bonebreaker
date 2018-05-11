@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace Bonebreaker
 {
     #region Public Enums
-
+    //TODO: Woanders hin, evt. World oder Map?
     public enum Direction
     {
         North,
@@ -76,8 +76,6 @@ namespace Bonebreaker
         /// <summary>
         /// Sets the cursor to a coordinate relative to the topleft of the map
         /// </summary>
-        /// <param name="X"></param>
-        /// <param name="Y"></param>
         public static void SetCursorToMap(int X, int Y)
         {
             Console.SetCursorPosition(X + MapLeftMargin + 2, Y + MapTopMargin + 1);

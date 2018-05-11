@@ -35,56 +35,6 @@ namespace Bonebreaker
                 }
             }
         }
-
-
-
-        public void DrawMap()
-        {
-            //TODO irgendwo Daten herholen statt alles mit Empty
-            for (int y = 0; y < Height; y++)
-            {
-                for (int x = 0; x < Width; x++)
-                {
-                    Tile[x, y].Terrain = TerrainLibrary.Empty;
-                }
-            }
-
-            LoadMapFromFile(@"..\..\Maps\World_1.txt");
-        }
-
-        //TODO: Load Map from File - Just draw Terrains with texteditor. Define Enemy Type and Position
-        public void LoadMapFromFile(string fileName)
-        {
-            var lines = File.ReadLines(fileName);
-            int y = 0;
-            foreach (var line in lines)
-            {
-                // Parse the Map part of the map file
-                if (y < Height)
-                {
-                    for (int x = 0; x < Width; x++)
-                    {
-                        Tile[x, y].Terrain = ParseMapFileChar(line[x]);
-                    }
-                }
-                y++;
-            }
-        }
-
-        private TerrainObject ParseMapFileChar(char fileChar)
-        {
-            switch (fileChar)
-            {
-                case ' ': return TerrainLibrary.Empty;
-
-                case '▓': return TerrainLibrary.Wall;
-
-                //TODO: Enemies einsetzen mit Terrain.Empty darunter case 'E':
-                //case 
-
-                default: return TerrainLibrary.Empty;
-            }
-        }
     }
 
     class Tile
@@ -100,24 +50,33 @@ namespace Bonebreaker
         }
     }
 
+    /// <summary>
+    /// Represents a kind of object including its look and gameplay options
+    /// </summary>
     class TerrainObject
     {
-        //TODO: Colors for Terrains
         public char Symbol { get; set; }
         public ConsoleColor ForegroundColor { get; set; }
         public ConsoleColor BackgroundColor { get; set; }
+        public string Name { get; set; }
         public bool UnitsCanEnter { get; set; }
 
-        public TerrainObject(char symbol, bool unitsCanEnter, ConsoleColor foregroundColor, ConsoleColor backgroundColor)
+        public TerrainObject(char symbol, string name,
+                             ConsoleColor foregroundColor, ConsoleColor backgroundColor,
+                             bool unitsCanEnter)
         {
             Symbol = symbol;
             UnitsCanEnter = unitsCanEnter;
             ForegroundColor = foregroundColor;
             BackgroundColor = backgroundColor;
+            Name = name;
             //TODO: mehr Eigenschaften von Geländearten
         }
     }
 
+    /// <summary>
+    /// Contains different kinds of Terrain (and a list of all of them) as properties
+    /// </summary>
     class TerrainLibrary
     {
         //TODO: mehr Geländearten (Wände, Gewässer und mehr)
@@ -125,20 +84,27 @@ namespace Bonebreaker
         public TerrainObject Empty { get; }
         public TerrainObject Wall { get; }
 
+        public List<TerrainObject> TerrainObjectList { get; }
 
         public TerrainLibrary()
         {
+            TerrainObjectList = new List<TerrainObject>();
+
             Empty = new TerrainObject(
                 symbol: ' ',
+                name: "Rasen",
                 foregroundColor: ConsoleColor.Black,
                 backgroundColor: ConsoleColor.DarkGreen,
                 unitsCanEnter: true);
+            TerrainObjectList.Add(Empty);
 
             Wall = new TerrainObject(
                 symbol: '▓',
+                name: "Mauer",
                 foregroundColor: ConsoleColor.Black,
                 backgroundColor: ConsoleColor.DarkGreen,
                 unitsCanEnter: false);
+            TerrainObjectList.Add(Wall);
         }
     }
 }
