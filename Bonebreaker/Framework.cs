@@ -96,6 +96,7 @@ namespace Bonebreaker
             Console.Write("═╝");
 
             // Print Legend
+            //TODO: Legend for Items
             Console.SetCursorPosition(MapLeftMargin + 2, map.Height + MapTopMargin + 2);
             foreach (TerrainObject terrain in map.TerrainLibrary.TerrainObjectList)
             {

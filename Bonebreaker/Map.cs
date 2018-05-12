@@ -94,10 +94,13 @@ namespace Bonebreaker
     class TerrainLibrary
     {
         //TODO: mehr Geländearten (Wände, Gewässer und mehr)
+        // When adding a new terrain remember to also add it to the
+        // map file parser in World.MapFileCharToTerrain
 
         public TerrainObject Empty { get; }
         public TerrainObject Wall { get; }
         public TerrainObject Goal { get; }
+        public TerrainObject Water { get; }
 
         public List<TerrainObject> TerrainObjectList { get; }
 
@@ -106,9 +109,9 @@ namespace Bonebreaker
             TerrainObjectList = new List<TerrainObject>();
 
             Empty = new TerrainObject(
-                symbol: ' ',
+                symbol: '░',
                 name: "Rasen",
-                foregroundColor: ConsoleColor.Black,
+                foregroundColor: ConsoleColor.Green,
                 backgroundColor: ConsoleColor.DarkGreen,
                 unitsCanEnter: true);
             TerrainObjectList.Add(Empty);
@@ -128,6 +131,14 @@ namespace Bonebreaker
                 backgroundColor: ConsoleColor.DarkGreen,
                 unitsCanEnter: true);
             TerrainObjectList.Add(Goal);
+
+            Water = new TerrainObject(
+                symbol: '▒',
+                name: "Wasser",
+                foregroundColor: ConsoleColor.Blue,
+                backgroundColor: ConsoleColor.DarkBlue,
+                unitsCanEnter: false);
+            TerrainObjectList.Add(Water);
         }
     }
 }

@@ -123,9 +123,7 @@ namespace Bonebreaker
         protected internal void Clear()
         {
             Framework.SetCursorToMap(X, Y);
-            Console.ForegroundColor = World.Map.Tile[X, Y].Terrain.ForegroundColor;
-            Console.BackgroundColor = World.Map.Tile[X, Y].Terrain.BackgroundColor;
-            Console.Write(' ');
+            World.Map.Tile[X, Y].Terrain.Print();
             World.Map.Tile[X, Y].IsOccupied = false;
         }
 

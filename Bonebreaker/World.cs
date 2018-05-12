@@ -119,6 +119,8 @@ namespace Bonebreaker
 
                 case '▲': return Map.TerrainLibrary.Goal;
 
+                case '▒': return Map.TerrainLibrary.Water;
+
                 default: return Map.TerrainLibrary.Empty;
             }
         }
