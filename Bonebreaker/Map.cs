@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Dynamic;
 using System.IO;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
@@ -73,6 +74,17 @@ namespace Bonebreaker
             Name = name;
             //TODO: mehr Eigenschaften von Geländearten
             //TODO: bool Occupied if Actor there
+        }
+
+        public void Print()
+        {
+            ConsoleColor backupForegroundColor = Console.ForegroundColor;
+            ConsoleColor backupBackgroundColor = Console.BackgroundColor;
+            Console.ForegroundColor = ForegroundColor;
+            Console.BackgroundColor = BackgroundColor;
+            Console.Write(Symbol);
+            Console.ForegroundColor = backupForegroundColor;
+            Console.BackgroundColor = backupBackgroundColor;
         }
     }
 

@@ -33,7 +33,7 @@ namespace Bonebreaker
             Tile targetTile;
             switch (direction)
             {
-                //TODO: Cleaner Code!
+                //TODO: Cleaner Code! (maybe targetTile (aber was ist mit index, gibts ne clamp?) or whatever)
                 //TODO: React on Goal (does this even belong here?)
                 case Direction.South:
                     if (Y < World.Map.Height - 1 &&
@@ -82,6 +82,11 @@ namespace Bonebreaker
                         Print();
                     }
                     break;
+            }
+
+            if (World.Map.Tile[X, Y].Terrain == World.Map.TerrainLibrary.Goal)
+            {
+                World.Win();
             }
 
         }

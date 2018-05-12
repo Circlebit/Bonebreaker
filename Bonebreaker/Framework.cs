@@ -71,12 +71,38 @@ namespace Bonebreaker
             }
 
             Console.SetCursorPosition(MapLeftMargin, map.Height + MapTopMargin + 1);
+            Console.Write("╠═");
+            for (int x = 0; x < map.Width; x++)
+            {
+                Console.Write("═");
+            }
+            Console.Write("═╣");
+
+            // Print Lower Map Frame
+            for (int y = map.Height + MapTopMargin + 2; y < map.Height + MapTopMargin + 5; y++)
+            {
+                Console.SetCursorPosition(MapLeftMargin, y);
+                Console.Write("║ ");
+                Console.SetCursorPosition(map.Width + MapLeftMargin + 2, y);
+                Console.Write(" ║");
+            }
+
+            Console.SetCursorPosition(MapLeftMargin, map.Height + MapTopMargin + 5);
             Console.Write("╚═");
             for (int x = 0; x < map.Width; x++)
             {
                 Console.Write("═");
             }
             Console.Write("═╝");
+
+            // Print Legend
+            Console.SetCursorPosition(MapLeftMargin + 2, map.Height + MapTopMargin + 2);
+            foreach (TerrainObject terrain in map.TerrainLibrary.TerrainObjectList)
+            {
+                terrain.Print();
+                Console.Write(" " + terrain.Name + "   ");
+            }
+
         }
 
         private static int GetRightFrameTopLeftX(Map map)
