@@ -50,7 +50,7 @@ namespace Bonebreaker
         public static void PrintMapFrame(Map map)
         {
             Console.SetCursorPosition(MapLeftMargin, MapTopMargin - 1);
-            Console.Write(" Map ");
+            Console.Write(" Karte ");
             Console.SetCursorPosition(MapLeftMargin, MapTopMargin);
             Console.Write("╔═");
             for (int x = 0; x < map.Width; x++)
