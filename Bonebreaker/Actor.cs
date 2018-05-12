@@ -133,7 +133,17 @@ namespace Bonebreaker
 
     class Player : Actor
     {
-        public int Health { get; set; } //TODO: end game when 0
+        private int _health;
+        public int Health
+        {
+            get { return _health; }
+            set
+            {
+                _health = value;
+                if (_health <= 0)
+                    World.Loose();
+            }
+        } //TODO: end game when 0
 
         public Player(int x, int y, World world = null) : base (x, y, world)
         {

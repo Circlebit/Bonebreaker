@@ -54,6 +54,12 @@ namespace Bonebreaker
             Console.Write("WIN WIN WIN");
         }
 
+        public void Loose()
+        {
+            Console.SetCursorPosition(60, 15);
+            Console.Write("OH NO!! YOU DIED :(");
+        }
+
         public void SpawnPlayer()
         {
             Player.Spawn(4, 2);
