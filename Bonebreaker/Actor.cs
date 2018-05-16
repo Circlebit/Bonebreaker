@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Media;
 
 namespace Bonebreaker
 {
@@ -145,6 +146,8 @@ namespace Bonebreaker
             }
         } //TODO: end game when 0
 
+        public SoundPlayer Wilhelmscream { get; set; }
+
         public Player(int x, int y, World world = null) : base (x, y, world)
         {
             X = x;
@@ -152,6 +155,9 @@ namespace Bonebreaker
             Symbol = '☻';
             Color = ConsoleColor.Yellow;
             Health = 3;
+            Wilhelmscream = new SoundPlayer();
+            Wilhelmscream.SoundLocation = @"..\..\Sounds\Wilhelm_Scream.mp3";
+            //TODO: play sound at health loss
         }
 
     }
