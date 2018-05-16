@@ -156,7 +156,7 @@ namespace Bonebreaker
             Color = ConsoleColor.Yellow;
             Health = 3;
             Wilhelmscream = new SoundPlayer();
-            Wilhelmscream.SoundLocation = @"..\..\Sounds\Wilhelm_Scream.mp3";
+            Wilhelmscream.SoundLocation = @"..\..\Sounds\wilhelm.wav";
             //TODO: play sound at health loss
         }
 
@@ -209,6 +209,7 @@ namespace Bonebreaker
                 //TODO: delete enemy
                 //TODO: play sound
                 Framework.PrintInfo(World);
+                World.Player.Wilhelmscream.Play();
             }
         }
 
