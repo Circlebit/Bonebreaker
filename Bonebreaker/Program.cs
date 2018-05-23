@@ -15,6 +15,9 @@ namespace Bonebreaker
 
             //TODO: Game Starten
             //TODO: World Starten
+            //TODO: Schleife zurück ins Menü
+            //TODO: Levels laden
+            //TODO: mehrere Levels ncheinander spielen
 
             Framework.PrintStartMenu();
 
