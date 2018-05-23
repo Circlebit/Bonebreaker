@@ -22,7 +22,7 @@ namespace Bonebreaker
     static class Framework
     {
         public const int WindowHeight = 39;
-        public const int WindowWidth = 120;
+        public const int WindowWidth = 122;
         public const int MapTopMargin = 2;
         public const int MapLeftMargin = 2;
         public const ConsoleColor DefaultForeColor = ConsoleColor.Black;
@@ -115,7 +115,7 @@ namespace Bonebreaker
 
         private static int GetRightFrameWidth(Map map)
         {
-            return WindowWidth - GetRightFrameTopLeftX(map) - 2 * MapLeftMargin;
+            return WindowWidth - GetRightFrameTopLeftX(map) - 3 * MapLeftMargin;
         }
 
         public static void PrintRightFrame(Map map)
