@@ -157,7 +157,6 @@ namespace Bonebreaker
             Health = 3;
             Wilhelmscream = new SoundPlayer();
             Wilhelmscream.SoundLocation = @"..\..\Sounds\wilhelm.wav";
-            //TODO: play sound at health loss
         }
 
     }

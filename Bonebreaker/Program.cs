@@ -11,10 +11,12 @@ namespace Bonebreaker
     {
         static void Main(string[] args)
         {
-                        Framework.SetupConsole();
+            Framework.SetupConsole();
 
             //TODO: Game Starten
             //TODO: World Starten
+
+            Framework.PrintStartMenu();
 
             Player Player = new Player(15, 7);
 

@@ -50,6 +50,7 @@ namespace Bonebreaker
 
         public static void PrintMapFrame(Map map)
         {
+            Console.Clear();
             Console.SetCursorPosition(MapLeftMargin, MapTopMargin - 1);
             Console.Write(" Karte ");
             Console.SetCursorPosition(MapLeftMargin, MapTopMargin);
@@ -179,7 +180,14 @@ namespace Bonebreaker
                 h--;
             }
             Console.Write(healthbar);
+        }
 
+        public static void PrintStartMenu()
+        {
+            Console.Clear();
+            Console.WriteLine("\n Willkommen bei Bonebreaker! \n");
+            Console.WriteLine("\n Enter zum Starten!");
+            Console.ReadKey();
         }
 
         /// <summary>
